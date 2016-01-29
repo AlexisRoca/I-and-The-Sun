@@ -1,2 +1,2 @@
-# I-and-The-Sun-
+# I-and-The-Sun
 First Game
