@@ -5,8 +5,6 @@
 
 Character::Character(TextureLoader * textures) :
 	m_charaterSprite(),
-	m_arrowSprite(),
-	m_eyeSprite(),
 	m_texture(textures->getCharacterTexture()),
 
     m_position(200, 200),
@@ -138,20 +136,22 @@ void Character::draw(sf::RenderWindow *window)
 		m_charaterSprite.setPosition(m_position);
         window->draw(m_charaterSprite);
 
-        m_arrowSprite.setTexture(*m_texture);
-		m_arrowSprite.setTextureRect(sf::IntRect(8*TEXTURE_DIMENSION, 0, TEXTURE_DIMENSION, TEXTURE_DIMENSION));
-		m_arrowSprite.setOrigin(-9,15);
-		m_arrowSprite.setPosition(m_position.x+(TEXTURE_DIMENSION/2), m_position.y+(TEXTURE_DIMENSION/2));
-		m_arrowSprite.setRotation(m_angleJump);
-		window->draw(m_arrowSprite);
+		sf::Sprite arrowSprite;
+		arrowSprite.setTexture(*m_texture);
+		arrowSprite.setTextureRect(sf::IntRect(8*TEXTURE_DIMENSION, 0, TEXTURE_DIMENSION, TEXTURE_DIMENSION));
+		arrowSprite.setOrigin(-9,15);
+		arrowSprite.setPosition(m_position.x+(TEXTURE_DIMENSION/2), m_position.y+(TEXTURE_DIMENSION/2));
+		arrowSprite.setRotation(m_angleJump);
+		window->draw(arrowSprite);
 
-        m_eyeSprite.setTexture(*m_texture);
+		sf::Sprite eyeSprite;
+        eyeSprite.setTexture(*m_texture);
         unsigned int direction_regard = (unsigned int)floor(((float)m_angleJump+135.0)*8.0/360)%8; //between 0 and 7
-		m_eyeSprite.setTextureRect(sf::IntRect(TEXTURE_DIMENSION*direction_regard, 0, TEXTURE_DIMENSION, 2*TEXTURE_DIMENSION));
-		m_eyeSprite.setOrigin(0, TEXTURE_DIMENSION);
-		m_eyeSprite.setPosition(m_position);
-		m_eyeSprite.move(0,-3);
-        window->draw(m_eyeSprite);
+		eyeSprite.setTextureRect(sf::IntRect(TEXTURE_DIMENSION*direction_regard, 0, TEXTURE_DIMENSION, 2*TEXTURE_DIMENSION));
+		eyeSprite.setOrigin(0, TEXTURE_DIMENSION);
+		eyeSprite.setPosition(m_position);
+		eyeSprite.move(0,-3);
+        window->draw(eyeSprite);
     }
 }
 
@@ -180,4 +180,9 @@ void Character::update(sf::Clock const & clk)
 
         m_lastAnimationUpdate = elapsedTime;
     }
+}
+
+bool Character::collision(sf::Sprite const * sprite)
+{
+	return m_charaterSprite.getLocalBounds().intersects(sprite->getGlobalBounds());
 }

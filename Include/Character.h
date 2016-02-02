@@ -21,8 +21,6 @@ class Character : public INDrawable, public INUpdatable
 
 	private: 
 		sf::Sprite m_charaterSprite;
-		sf::Sprite m_arrowSprite;
-		sf::Sprite m_eyeSprite;
 		const sf::Texture * m_texture;
 
         sf::Vector2f m_position;
@@ -144,5 +142,7 @@ class Character : public INDrawable, public INUpdatable
 		*
 		*/
 		virtual void update(sf::Clock const & clk);
+
+		bool collision(sf::Sprite const * sprite);
 };
 
