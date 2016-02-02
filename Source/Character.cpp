@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #define TEXTURE_DIMENSION 32
 #include "Character.h"
+#include "..\Include\Character.h"
 
 
 Character::Character(TextureLoader * textures) :
@@ -98,7 +99,6 @@ unsigned char Character::getCurrentRoom()
 void Character::setCurrentRoom(unsigned char assignedRoom)
 {
 	m_currentRoom = assignedRoom;
-	//std::cout << "Current Room : " << m_currentRoom << std::endl;
 }
 
 void Character::setStatusCollision(bool isInCollision)
