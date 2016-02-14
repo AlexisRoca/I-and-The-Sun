@@ -120,6 +120,7 @@ void Character::draw(sf::RenderWindow *window)
 {
     if(m_jumping)
 	{
+		m_charaterSprite = sf::Sprite();
 		m_charaterSprite.setTexture(*m_texture);
 		m_charaterSprite.setTextureRect(sf::IntRect(TEXTURE_DIMENSION*(m_currentAnimation%8), 4*TEXTURE_DIMENSION, TEXTURE_DIMENSION, 2*TEXTURE_DIMENSION));
 		m_charaterSprite.setOrigin(16,TEXTURE_DIMENSION+16);
@@ -130,6 +131,7 @@ void Character::draw(sf::RenderWindow *window)
     }
     else
 	{
+		m_charaterSprite = sf::Sprite();
 		m_charaterSprite.setTexture(*m_texture);
 		m_charaterSprite.setTextureRect(sf::IntRect(TEXTURE_DIMENSION*(m_currentAnimation%12), 2*TEXTURE_DIMENSION, TEXTURE_DIMENSION, 2*TEXTURE_DIMENSION));
 		m_charaterSprite.setOrigin(0,TEXTURE_DIMENSION);
