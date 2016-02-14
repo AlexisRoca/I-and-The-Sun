@@ -1,6 +1,4 @@
-#include "Object.h"
-
-
+#include "..\Include\Object.h"
 
 Object::Object(unsigned int width, unsigned int height, unsigned int x, unsigned int y, sf::Texture * objectTexture, unsigned int offsetX, unsigned int offsetY):
 	m_width(width),
@@ -44,4 +42,9 @@ int Object::getX() const
 int Object::getY() const
 {
 	return m_y;
+}
+
+sf::Sprite * Object::getSprite()
+{
+	return & m_sprite;
 }

@@ -177,11 +177,11 @@ void BurnableObject::update(sf::Clock const & clk)
 
 void BurnableObject::collision(Ray * ray)
 {
-	Ray intersectionRay(ray->getOrigin(),ray->getDirection());
-	intersectionRay.intersectSquare(sf::Vector2f(m_x * 32, m_y * 32), sf::Vector2f((m_x + m_width) * 32, (m_y + m_height) * 32), true, this);
-	
-	if(intersectionRay.validIntersectionFound())
-		this->ignite(10);
+	//Ray intersectionRay(ray->getOrigin(),ray->getDirection());
+	//intersectionRay.intersectSquare(sf::Vector2f(m_x * 32, m_y * 32), sf::Vector2f((m_x + m_width) * 32, (m_y + m_height) * 32), true, this);
+	//
+	//if(intersectionRay.validIntersectionFound())
+	//	this->ignite(10);
 
 	ray->intersectSquare(sf::Vector2f(m_x * 32, m_y * 32), sf::Vector2f((m_x + m_width) * 32, (m_y + m_height) * 32), true, this);
 }

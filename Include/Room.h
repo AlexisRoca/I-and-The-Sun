@@ -38,5 +38,7 @@ class Room : public INDrawable, public INUpdatable, public INCollisionable
 		virtual void draw(sf::RenderWindow *window);
 		virtual void update(sf::Clock const & clk);
 		virtual void collision(Ray * ray);
+
+		void collision(sf::Sprite * sprite);
 };
 

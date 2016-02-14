@@ -32,6 +32,7 @@ class Object : public INDrawable, public INUpdatable, public INCollisionable
 		int getX() const;
 		int getY() const;
 
+		sf::Sprite * getSprite();
 
 		virtual void draw(sf::RenderWindow * window) = 0;
 		virtual void update(sf::Clock const& clk) = 0;

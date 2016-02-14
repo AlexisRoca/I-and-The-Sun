@@ -1,6 +1,7 @@
 #define _USE_MATH_DEFINES
 #define TEXTURE_DIMENSION 32
-#include "Character.h"
+
+#include "..\Include\Character.h"
 
 
 Character::Character(TextureLoader * textures) :
@@ -103,6 +104,11 @@ void Character::setCurrentRoom(unsigned char assignedRoom)
 void Character::setStatusCollision(bool isInCollision)
 {
     m_statusCollision = isInCollision;
+}
+
+sf::Sprite * Character::getSprite()
+{
+	return & m_charaterSprite;
 }
 
 bool Character::isJumping()

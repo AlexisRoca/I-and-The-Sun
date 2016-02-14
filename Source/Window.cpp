@@ -248,6 +248,15 @@ void Window::update(sf::Clock const & clk)
     }
     else
         m_menu->update(clk, m_currentStatus);
+
+
+
+	if(m_currentWorld->getCharacter()->isJumping())
+	{
+		unsigned char currentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
+		m_currentWorld->getCharacter()->
+		//m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(currentRoom)->collision(m_currentWorld->getCharacter()-;
+	}
 }
 
 void Window::leftButton() const
@@ -267,7 +276,6 @@ void Window::bothButtons() const
 	//unsigned char characterCurrentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
 	//m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(characterCurrentRoom)->collision(collisionRay);
 	m_currentWorld->getBuilding()->getCurrentFloor()->collision(collisionRay);
-
 	m_currentWorld->getCharacter()->setDistanceToCollision(collisionRay->distanceToIntersection());
 }
 

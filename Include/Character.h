@@ -106,6 +106,8 @@ class Character : public INDrawable, public INUpdatable
 		*/
 		void setStatusCollision(bool isInCollision);
 
+		sf::Sprite * getSprite();
+
 		/**
 		* @brief Set the position of the character
 		*

@@ -83,3 +83,15 @@ void Room::collision(Ray * ray)
 	for (int i = 0; i<m_burnableObjects.size(); i++)
 		m_burnableObjects[i]->collision(ray);
 }
+
+void Room::collision(sf::Sprite * sprite)
+{
+	for (int i = 0; i < m_burnableObjects.size(); i++)
+	{
+		if (m_burnableObjects[i]->getSprite()->getLocalBounds().intersects(sprite->getGlobalBounds()))
+		{
+			m_burnableObjects[i]->ignite(10);
+			break;
+		}
+	}
+}
