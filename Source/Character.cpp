@@ -1,7 +1,6 @@
 #define _USE_MATH_DEFINES
 #define TEXTURE_DIMENSION 32
 #include "Character.h"
-#include "..\Include\Character.h"
 
 
 Character::Character(TextureLoader * textures) :
@@ -9,7 +8,7 @@ Character::Character(TextureLoader * textures) :
 	m_texture(textures->getCharacterTexture()),
 
     m_position(200, 200),
-	m_currentRoom('A'),
+	m_currentRoom(' '),
 
     m_currentAnimation(0),
 
