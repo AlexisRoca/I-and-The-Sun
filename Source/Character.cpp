@@ -1,7 +1,7 @@
 #define _USE_MATH_DEFINES
 #define TEXTURE_DIMENSION 32
 
-#include "..\Include\Character.h"
+#include "Character.h"
 
 
 Character::Character(TextureLoader * textures) :
@@ -69,6 +69,11 @@ sf::Vector2f Character::getPosition()
     return m_position;
 }
 
+sf::Sprite * Character::getSprite()
+{
+	return & m_charaterSprite;
+}
+
 void Character::setPosition(sf::Vector2f position)
 {
     m_position = position;
@@ -106,10 +111,6 @@ void Character::setStatusCollision(bool isInCollision)
     m_statusCollision = isInCollision;
 }
 
-sf::Sprite * Character::getSprite()
-{
-	return & m_charaterSprite;
-}
 
 bool Character::isJumping()
 {
@@ -191,5 +192,5 @@ void Character::update(sf::Clock const & clk)
 
 bool Character::collision(sf::Sprite const * sprite)
 {
-	return m_charaterSprite.getLocalBounds().intersects(sprite->getGlobalBounds());
+	return m_charaterSprite.getGlobalBounds().intersects(sprite->getGlobalBounds());
 }

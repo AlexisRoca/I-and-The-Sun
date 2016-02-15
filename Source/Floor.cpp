@@ -30,7 +30,17 @@ void Floor::addLineToBackground(std::vector<unsigned char> line)
 void Floor::addLineToRoomsMap(std::vector<unsigned char> line)
 {
 	m_floorMap.push_back(line);
-}
+
+	for (int i = 0; i < m_floorMap.size(); i++)
+	{
+		for (int j = 0; j < m_floorMap[i].size(); j++)
+			std::cout << m_floorMap[i][j];
+
+		std::cout << std::endl;
+	}
+
+	std::cout << "Taille map: [" << m_floorMap.size() << "," << m_floorMap[0].size() << "] " << std::endl;
+ }
 
 
 void Floor::addRoom(unsigned char roomId)

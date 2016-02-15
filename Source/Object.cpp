@@ -1,4 +1,4 @@
-#include "..\Include\Object.h"
+#include "Object.h"
 
 Object::Object(unsigned int width, unsigned int height, unsigned int x, unsigned int y, sf::Texture * objectTexture, unsigned int offsetX, unsigned int offsetY):
 	m_width(width),

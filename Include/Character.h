@@ -82,6 +82,7 @@ class Character : public INDrawable, public INUpdatable
 		*/
 		sf::Vector2f getPosition();
 
+		sf::Sprite * getSprite();
 		/**
 		* @brief Get the new position of the character
 		*	if he moves
@@ -106,7 +107,6 @@ class Character : public INDrawable, public INUpdatable
 		*/
 		void setStatusCollision(bool isInCollision);
 
-		sf::Sprite * getSprite();
 
 		/**
 		* @brief Set the position of the character
@@ -146,5 +146,6 @@ class Character : public INDrawable, public INUpdatable
 		virtual void update(sf::Clock const & clk);
 
 		bool collision(sf::Sprite const * sprite);
+		
 };
 

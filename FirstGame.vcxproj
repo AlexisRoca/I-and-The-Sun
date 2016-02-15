@@ -132,7 +132,7 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\Jeux Video\SFML\FirstGame\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\PROJECTS\I-and-The-Sun\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -150,7 +150,7 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\Jeux Video\SFML\FirstGame\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\PROJECTS\I-and-The-Sun\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -170,7 +170,7 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\Jeux Video\SFML\FirstGame\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\PROJECTS\I-and-The-Sun\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -192,7 +192,7 @@
       <PreprocessorDefinitions>
       </PreprocessorDefinitions>
       <SDLCheck>true</SDLCheck>
-      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\Jeux Video\SFML\FirstGame\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Alexis\OneDrive\Documents Personnels\PROJECTS\I-and-The-Sun\Include;D:\Libraries\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

@@ -11,8 +11,8 @@
 #include "FontLoader.h"
 #include "Menu.h"
 #include "World.h"
-//#include "Character.h"
-//#include "Floor.h"
+#include "Character.h"
+#include "Floor.h"
 
 class Window //: public INEventHandler, public INUpdatable
 {

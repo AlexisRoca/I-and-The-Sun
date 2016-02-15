@@ -1,6 +1,4 @@
-#include "..\Include\Room.h"
-
-
+#include "Room.h"
 
 Room::Room(unsigned char id, double maxLife):
 	m_id(id),
@@ -88,9 +86,12 @@ void Room::collision(sf::Sprite * sprite)
 {
 	for (int i = 0; i < m_burnableObjects.size(); i++)
 	{
-		if (m_burnableObjects[i]->getSprite()->getLocalBounds().intersects(sprite->getGlobalBounds()))
+		if(m_burnableObjects[i]->getSprite()->getGlobalBounds().intersects(sprite->getGlobalBounds()))
 		{
 			m_burnableObjects[i]->ignite(10);
+			
+			sprite->setPosition(m_burnableObjects[i]->getY() + m_burnableObjects[i]->getWidth() / 2,
+								m_burnableObjects[i]->getX() + m_burnableObjects[i]->getHeight() / 3);
 			break;
 		}
 	}

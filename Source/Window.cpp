@@ -254,8 +254,9 @@ void Window::update(sf::Clock const & clk)
 	if(m_currentWorld->getCharacter()->isJumping())
 	{
 		unsigned char currentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
-		m_currentWorld->getCharacter()->
-		//m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(currentRoom)->collision(m_currentWorld->getCharacter()-;
+		std::cout << "Current Room:" << currentRoom << std::endl;
+
+		m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(currentRoom)->collision(m_currentWorld->getCharacter()->getSprite());
 	}
 }
 
@@ -272,9 +273,6 @@ void Window::rightButton() const
 void Window::bothButtons() const
 {
 	Ray * collisionRay = m_currentWorld->getCharacter()->jump();
-
-	//unsigned char characterCurrentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
-	//m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(characterCurrentRoom)->collision(collisionRay);
 	m_currentWorld->getBuilding()->getCurrentFloor()->collision(collisionRay);
 	m_currentWorld->getCharacter()->setDistanceToCollision(collisionRay->distanceToIntersection());
 }

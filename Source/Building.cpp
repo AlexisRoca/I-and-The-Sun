@@ -52,8 +52,6 @@ void Building::loadBuilding(std::string const &path)
 
 	Floor * currentFloor = new Floor(m_textureLoader);
 
-	//std::unordered_map<unsigned char, bool> fireDetectorsSentInRoom;
-
 	bool mapConstruction = false;
 	bool backgroundConstruction = false;
 
@@ -249,7 +247,6 @@ void Building::loadBuilding(std::string const &path)
 	}
 
 	m_currentFloor = m_floors[0];
-
 	////delete orphaned fireDetectors
 	//for (auto it = fireDetectors.begin(); it != fireDetectors.end(); ++it)
 	//	if (!fireDetectorsSentInRoom.at(it->first))
