@@ -38,7 +38,6 @@ void Character::setAngle(double alpha)
         else if (m_angleJump < 0)
             m_angleJump = 360;
     }
-
 }
 
 double Character::getAngle() const
