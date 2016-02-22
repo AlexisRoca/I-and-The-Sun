@@ -1,6 +1,7 @@
 # I-and-The-Sun
 
 [Controls: Left and Right arrow to choose the angle, both at the same time to jump] 
+
 You are Spooky, a small little flame that spawned in a house. Do what any other flame do : burn everything to the ground !
 
 
