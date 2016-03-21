@@ -250,13 +250,49 @@ void Window::update(sf::Clock const & clk)
         m_menu->update(clk, m_currentStatus);
 
 
+	//std::cout << m_currentWorld->getCharacter()->isJumping() << std::endl;
 
 	if(m_currentWorld->getCharacter()->isJumping())
 	{
-		unsigned char currentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
-		std::cout << "Current Room:" << currentRoom << std::endl;
+		m_currentWorld->getCharacter()->setPosition(m_currentWorld->getCharacter()->nextFramePosition());
 
-		m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(currentRoom)->collision(m_currentWorld->getCharacter()->getSprite());
+		sf::Sprite * characterSprite = m_currentWorld->getCharacter()->getSprite();
+		unsigned char currentRoom = m_currentWorld->getCharacter()->getCurrentRoom();
+		
+
+		std::vector<std::vector<unsigned char> > * floorMap = m_currentWorld->getBuilding()->getCurrentFloor()->getFloorMap();
+		std::vector<BurnableObject *> * burnableObjects = m_currentWorld->getBuilding()->getCurrentFloor()->getRoom(currentRoom)->getBurnableObjects();
+
+		
+
+		//Collision test
+		for(int i=0; i<floorMap->size(); i++)
+		{
+			for(int j=0; j<(*floorMap).size(); j++)
+			{
+				if((*floorMap)[i][j] == '0')
+				{
+					sf::RectangleShape wall(sf::Vector2f(32,32));
+					wall.setPosition(sf::Vector2f(i*32,j*32));
+
+					if(wall.getGlobalBounds().intersects(characterSprite->getGlobalBounds()))
+						m_currentWorld->getCharacter()->stop();
+				}
+			}
+		}
+		
+		
+		for(int i=0; i<burnableObjects->size(); i++)
+		{
+			if (!(*burnableObjects)[i]->isBurned())
+			{
+				if ((*burnableObjects)[i]->getSprite()->getGlobalBounds().intersects(characterSprite->getGlobalBounds()))
+				{
+					(*burnableObjects)[i]->ignite(10);
+					m_currentWorld->getCharacter()->stop();
+				}
+			}
+		}
 	}
 }
 
@@ -271,10 +307,11 @@ void Window::rightButton() const
 }
 
 void Window::bothButtons() const
-{
+{	
 	Ray * collisionRay = m_currentWorld->getCharacter()->jump();
-	m_currentWorld->getBuilding()->getCurrentFloor()->collision(collisionRay);
-	m_currentWorld->getCharacter()->setDistanceToCollision(collisionRay->distanceToIntersection());
+
+	//m_currentWorld->getBuilding()->getCurrentFloor()->collision(collisionRay);
+	//m_currentWorld->getCharacter()->setDistanceToCollision(collisionRay->distanceToIntersection());
 }
 
 void Window::drawHUD() const

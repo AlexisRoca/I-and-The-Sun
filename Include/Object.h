@@ -1,9 +1,8 @@
 #pragma once
 #include "INDrawable.h"
 #include "INUpdatable.h"
-#include "INCollisionable.h"
 
-class Object : public INDrawable, public INUpdatable, public INCollisionable 
+class Object : public INDrawable, public INUpdatable
 {
 	protected:
 		unsigned int m_width;
@@ -36,6 +35,5 @@ class Object : public INDrawable, public INUpdatable, public INCollisionable
 
 		virtual void draw(sf::RenderWindow * window) = 0;
 		virtual void update(sf::Clock const& clk) = 0;
-		virtual void collision(Ray * ray) = 0;
 };
 

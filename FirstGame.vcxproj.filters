@@ -27,9 +27,6 @@
     <ClCompile Include="Source\Character.cpp">
       <Filter>Fichiers source</Filter>
     </ClCompile>
-    <ClCompile Include="Source\Door.cpp">
-      <Filter>Fichiers source</Filter>
-    </ClCompile>
     <ClCompile Include="Source\FireSensor.cpp">
       <Filter>Fichiers source</Filter>
     </ClCompile>
@@ -80,9 +77,6 @@
     <ClInclude Include="Include\Character.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="Include\Door.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
     <ClInclude Include="Include\FireSensor.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -93,9 +87,6 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Include\gameStatus.h">
-      <Filter>Fichiers d%27en-tête</Filter>
-    </ClInclude>
-    <ClInclude Include="Include\INCollisionable.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
     <ClInclude Include="Include\INDrawable.h">

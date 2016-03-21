@@ -6,7 +6,6 @@ Floor::Floor(TextureLoader const * textureLoaders) :
 	m_floorMap(),
 
     m_rooms(),
- 	m_doors(),
  //   m_teleporters(),
 	
 	m_textureBuilding(textureLoaders->getFloorTexture()),
@@ -30,17 +29,7 @@ void Floor::addLineToBackground(std::vector<unsigned char> line)
 void Floor::addLineToRoomsMap(std::vector<unsigned char> line)
 {
 	m_floorMap.push_back(line);
-
-	for (int i = 0; i < m_floorMap.size(); i++)
-	{
-		for (int j = 0; j < m_floorMap[i].size(); j++)
-			std::cout << m_floorMap[i][j];
-
-		std::cout << std::endl;
-	}
-
-	std::cout << "Taille map: [" << m_floorMap.size() << "," << m_floorMap[0].size() << "] " << std::endl;
- }
+}
 
 
 void Floor::addRoom(unsigned char roomId)
@@ -61,16 +50,6 @@ std::map<unsigned char, Room *> * Floor::getRooms()
 	return & m_rooms;
 }
 
-void Floor::addDoor(Door * door)
-{
-	m_doors.push_back(door);
-}
-
-std::vector<Door*>* Floor::getDoors()
-{
-	return & m_doors;
-}
-
 //void Floor::addTeleporter(Teleporter * teleporter)
 //{
 //    m_teleporters.push_back(teleporter);
@@ -81,9 +60,9 @@ std::vector<Door*>* Floor::getDoors()
 //	return m_teleporters;
 //}
 
-std::vector<std::vector<unsigned char> > & Floor::getFloorMap()
+std::vector<std::vector<unsigned char> > * Floor::getFloorMap()
 {
-	return m_floorMap;
+	return &m_floorMap;
 }
 
 void Floor::setLife(double lostLife)
@@ -104,14 +83,6 @@ double Floor::getMaxLife() const
 double Floor::lifeStay() const
 {
 	return m_maxLife - m_currentLife;
-}
-
-void Floor::wallCollision(Ray * collisionRay)
-{
-	for(unsigned int i = 0; i < m_background.size(); ++i)
-		for(unsigned int j = 0; j < m_background[i].size(); ++j)
-			if (m_background[i][j] == '0')
-				collisionRay->intersectSquare(sf::Vector2f(j * 32, i * 32), sf::Vector2f(j * 32 + 31, i * 32 + 31));
 }
 
 void Floor::update(sf::Clock const & clk)
@@ -160,21 +131,11 @@ void Floor::draw(sf::RenderWindow * window)
     //objects
     for(auto it = m_rooms.cbegin(); it != m_rooms.cend(); ++it)
         (*it).second->draw(window);
-
-	//doors
-	for (auto it = m_doors.cbegin(); it != m_doors.cend(); ++it)
-		(*it)->draw(window);
 }
 
-void Floor::collision(Ray * ray)
+bool Floor::collision(sf::Sprite * sprite)
 {
-    wallCollision(ray);
-
-    for(auto it = m_rooms.begin(); it != m_rooms.end(); ++it)
-        (*it).second->collision(ray);
-
-    //for(auto it = m_teleporters.begin(); it != m_teleporters.end(); ++it)
-    //    (*it)->collision(ray);
+	
 
 }
 

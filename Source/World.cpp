@@ -45,9 +45,9 @@ void World::update(sf::Clock const & clk)
 	m_character->update(clk);
 
 	sf::Vector2f characterPositon = m_character->getPosition();
-	int x = characterPositon.y / 36;
-	int y = characterPositon.x / 36;
-	
-	if(m_building->getCurrentFloor()->getFloorMap()[x][y] != 'P' && m_building->getCurrentFloor()->getFloorMap()[x][y] != '0')
-		m_character->setCurrentRoom(m_building->getCurrentFloor()->getFloorMap()[x][y]);
+	int x = characterPositon.y / 32;
+	int y = characterPositon.x / 32;
+
+	if((*m_building->getCurrentFloor()->getFloorMap())[x][y] != 'P' && (*m_building->getCurrentFloor()->getFloorMap())[x][y] != '0')
+		m_character->setCurrentRoom((*m_building->getCurrentFloor()->getFloorMap())[x][y]);
 }

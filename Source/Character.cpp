@@ -85,6 +85,11 @@ Ray * Character::jump()
 	return &m_collisionRay;
 }
 
+void Character::stop()
+{
+	m_jumping = false;
+}
+
 Ray Character::getJumpRay()
 {
 	return Ray(getPosition() + sf::Vector2f(16, 16), getDirection());
@@ -167,19 +172,19 @@ void Character::update(sf::Clock const & clk)
     sf::Time elapsedTime = clk.getElapsedTime();
 
     //Deplacement
-    if(isJumping())
-    {
-		m_distanceToCollision -= m_velocity;
+  //  if(isJumping())
+  //  {
+		//m_distanceToCollision -= m_velocity;
 
-        if(m_distanceToCollision <= 10)
-        {
-            m_jumping = false;
-            setStatusCollision(true);
-			m_distanceToCollision = 0;
-        }
+  //      if(m_distanceToCollision <= 10)
+  //      {
+  //          m_jumping = false;
+  //          setStatusCollision(true);
+		//	m_distanceToCollision = 0;
+  //      }
 
-        else setPosition(nextFramePosition());
-    }
+  //      else setPosition(nextFramePosition());
+  //  }
 
     if((elapsedTime - m_lastAnimationUpdate).asMilliseconds() >= 200)
     {

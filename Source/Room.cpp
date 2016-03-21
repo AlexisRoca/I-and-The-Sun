@@ -2,8 +2,8 @@
 
 Room::Room(unsigned char id, double maxLife):
 	m_id(id),
-	m_fireSensors(),
 	m_burnableObjects(),
+	m_fireSensors(),
 
 	m_maxLife(maxLife),
 	m_currentLife(maxLife)
@@ -27,6 +27,16 @@ void Room::addFurniture(BurnableObject * burnableObject)
 void Room::addFireSensor(FireSensor * fireSensor)
 {
 	m_fireSensors.push_back(fireSensor);
+}
+
+std::vector<BurnableObject*>* Room::getBurnableObjects()
+{
+	return & m_burnableObjects;
+}
+
+std::vector<FireSensor*>* Room::getFireSensors()
+{
+	return & m_fireSensors;
 }
 
 void Room::setDamage(const double damage)
@@ -71,28 +81,4 @@ void Room::update(sf::Clock const & clk)
 
 	for (int i = 0; i<m_burnableObjects.size(); i++)
 		m_burnableObjects[i]->update(clk);
-}
-
-void Room::collision(Ray * ray)
-{
-	for (int i = 0; i<m_fireSensors.size(); i++)
-		m_fireSensors[i]->collision(ray);
-
-	for (int i = 0; i<m_burnableObjects.size(); i++)
-		m_burnableObjects[i]->collision(ray);
-}
-
-void Room::collision(sf::Sprite * sprite)
-{
-	for (int i = 0; i < m_burnableObjects.size(); i++)
-	{
-		if(m_burnableObjects[i]->getSprite()->getGlobalBounds().intersects(sprite->getGlobalBounds()))
-		{
-			m_burnableObjects[i]->ignite(10);
-			
-			sprite->setPosition(m_burnableObjects[i]->getY() + m_burnableObjects[i]->getWidth() / 2,
-								m_burnableObjects[i]->getX() + m_burnableObjects[i]->getHeight() / 3);
-			break;
-		}
-	}
 }

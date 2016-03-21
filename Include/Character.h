@@ -37,6 +37,8 @@ class Character : public INDrawable, public INUpdatable
 		bool m_statusCollision;
 		double m_distanceToCollision = 0;
 
+		//TODO 
+		//hit box
 
 	public:
 		/**
@@ -121,6 +123,7 @@ class Character : public INDrawable, public INUpdatable
 		*
 		*/
 		Ray * jump();
+		void stop();
 
 		Ray getJumpRay();
 

@@ -39,7 +39,7 @@ void FireSensor::draw(sf::RenderWindow * window)
 	sf::CircleShape shape(m_radius);
 	shape.setFillColor(sf::Color::Transparent);
 	shape.setOutlineThickness(5);
-	shape.setOutlineColor(sf::Color(255, 0, 0));
+	shape.setOutlineColor(sf::Color(0, 0, 100));
 	shape.setOrigin(m_radius, m_radius);
 	shape.setPosition((m_x*32),(m_y * 32));
 	window->draw(shape);
@@ -57,8 +57,8 @@ void FireSensor::update(sf::Clock const& clk)
     //TODO
 }
 
-void FireSensor::collision(Ray * ray)
-{
-    if(ray->intersectCircle(sf::Vector2f((m_x*32)+16,(m_y*32)+16), m_radius, false))
-        activate();
-}
+//void FireSensor::collision(Ray * ray)
+//{
+//    if(ray->intersectCircle(sf::Vector2f((m_x*32)+16,(m_y*32)+16), m_radius, false))
+//        activate();
+//}

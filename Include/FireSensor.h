@@ -7,13 +7,12 @@
 
 #include "INUpdatable.h"
 #include "INDrawable.h"
-#include "INCollisionable.h"
 
 #include "Ray.h"
 
 class Room;
 
-class FireSensor : public Object, public INUpdatable, public INDrawable, public INCollisionable
+class FireSensor : public Object, public INUpdatable, public INDrawable
 {
     private:
         double const m_radius;
@@ -47,10 +46,9 @@ class FireSensor : public Object, public INUpdatable, public INDrawable, public 
          *@param ray: the ray who will intersect somethings or not
          */
         /**
-         *@brief	draw the FIreDetector
+         *@brief	draw the FireDetector
          *
          */
         virtual void draw(sf::RenderWindow * window);
         virtual void update(sf::Clock const& clk);
-        virtual void collision(Ray * ray);
 };

@@ -23,7 +23,6 @@
     <ClCompile Include="Source\BurnableObject.cpp" />
     <ClCompile Include="Source\Button.cpp" />
     <ClCompile Include="Source\Character.cpp" />
-    <ClCompile Include="Source\Door.cpp" />
     <ClCompile Include="Source\FireSensor.cpp" />
     <ClCompile Include="Source\Floor.cpp" />
     <ClCompile Include="Source\FontLoader.cpp" />
@@ -42,12 +41,10 @@
     <ClInclude Include="Include\BurnableObject.h" />
     <ClInclude Include="Include\Button.h" />
     <ClInclude Include="Include\Character.h" />
-    <ClInclude Include="Include\Door.h" />
     <ClInclude Include="Include\FireSensor.h" />
     <ClInclude Include="Include\Floor.h" />
     <ClInclude Include="Include\FontLoader.h" />
     <ClInclude Include="Include\gameStatus.h" />
-    <ClInclude Include="Include\INCollisionable.h" />
     <ClInclude Include="Include\INDrawable.h" />
     <ClInclude Include="Include\INEventHandler.h" />
     <ClInclude Include="Include\INUpdatable.h" />
@@ -119,9 +116,13 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\Include;$(IncludePath)</IncludePath>
+    <SourcePath>.\Source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
+    <IncludePath>.\Include;$(IncludePath)</IncludePath>
+    <SourcePath>.\Source;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>

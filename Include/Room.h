@@ -8,15 +8,14 @@
 
 #include "INDrawable.h"
 #include "INUpdatable.h"
-#include "INCollisionable.h"
 
-class Room : public INDrawable, public INUpdatable, public INCollisionable
+class Room : public INDrawable, public INUpdatable
 {
 	private:
 		const unsigned char m_id;
 
-		std::vector<FireSensor *> m_fireSensors;
 		std::vector<BurnableObject *> m_burnableObjects;
+		std::vector<FireSensor *> m_fireSensors;
 
 		const double m_maxLife;
 		double m_currentLife;
@@ -28,6 +27,9 @@ class Room : public INDrawable, public INUpdatable, public INCollisionable
 		void addFurniture(BurnableObject * burnableObject);
 		void addFireSensor(FireSensor * object);
 
+		std::vector<BurnableObject *> * getBurnableObjects();
+		std::vector<FireSensor *> * getFireSensors();
+
 		void setDamage(const double damage);
 		void stopFire();
 
@@ -37,8 +39,5 @@ class Room : public INDrawable, public INUpdatable, public INCollisionable
 
 		virtual void draw(sf::RenderWindow *window);
 		virtual void update(sf::Clock const & clk);
-		virtual void collision(Ray * ray);
-
-		void collision(sf::Sprite * sprite);
 };
 

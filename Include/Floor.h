@@ -3,25 +3,21 @@
 #include <SFML/Graphics.hpp>
 #include <SFML/System/Vector2.hpp>
 
-#include "INDrawable.h"
-#include "INUpdatable.h"
-#include "INCollisionable.h"
-
 #include "TextureLoader.h"
 #include "Room.h"
-//#include "Object.h"
-//#include "Ray.h"
-//#include "Teleporter.h"
-#include "Door.h"
 
-class Floor : public INDrawable, public INUpdatable, public INCollisionable
+#include "INDrawable.h"
+#include "INUpdatable.h"
+
+//#include "Teleporter.h
+
+class Floor : public INDrawable, public INUpdatable
 {
 	private:
 		std::vector<std::vector<unsigned char> > m_background;
 		std::vector<std::vector<unsigned char> > m_floorMap;
 
 		std::map<unsigned char, Room *> m_rooms;
-		std::vector<Door *> m_doors;
   //      std::vector<Teleporter *> m_teleporters;
 
 		sf::Texture * m_textureBuilding;
@@ -47,14 +43,11 @@ class Floor : public INDrawable, public INUpdatable, public INCollisionable
 		std::map<unsigned char, Room *> * getRooms();
 
 		
-
-		void addDoor(Door * door);
-		std::vector<Door *> * getDoors();
 		//void addTeleporter(Teleporter * teleporter);
 
 
 		//std::vector<Teleporter *> getTeleporter();
-		std::vector<std::vector<unsigned char> > & getFloorMap();
+		std::vector<std::vector<unsigned char> > * getFloorMap();
 		
 		
 		virtual void setLife(double lostLife);
@@ -66,10 +59,11 @@ class Floor : public INDrawable, public INUpdatable, public INCollisionable
 
 		virtual void update(sf::Clock const & clk);
 		virtual void draw(sf::RenderWindow *window);
-        virtual void collision(Ray * ray);
+
+		bool collision(sf::Sprite * sprite);
+
 
 	private:
-		void wallCollision(Ray * collisionRay);
 		sf::Vector2u offset(unsigned int i, unsigned int j) const;
 };
 

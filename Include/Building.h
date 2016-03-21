@@ -13,9 +13,8 @@
 #include "TextureLoader.h"
 //#include "Character.h"
 #include "Floor.h"
-//#include "Room.h"
+#include "Room.h"
 #include "FireSensor.h"
-#include "Door.h"
 
 class Building : public INDrawable, public INUpdatable
 {
@@ -56,15 +55,6 @@ class Building : public INDrawable, public INUpdatable
 		*@param window: window whitch containt the building
 		*/
 		void loadBuilding(std::string const & path);
-
-
-		/**
-		*@brief check if the sprite is intersecting a wall in the floor number idFloor
-		*
-		*@param idFloor : the floor which we want to check if there are any collision
-		*@param sprite : the sprite which collide or not any wall in the floor
-		*/
-		bool checkCollisions(Ray * collisionRay, unsigned char characterCurrentRoom);
 
 		/**
 		*@brief show the building

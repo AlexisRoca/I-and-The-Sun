@@ -57,8 +57,9 @@ class BurnableObject : public Object
 		virtual double lifeLost() const;
 		virtual double getMaxBurnedDamage() const;
 
+		virtual bool isBurned() const;
+
 		virtual void draw(sf::RenderWindow * window);
 		virtual void update(sf::Clock const& clk);
-		virtual void collision(Ray * ray);
 };
 

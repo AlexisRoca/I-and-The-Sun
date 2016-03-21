@@ -50,26 +50,21 @@ void Building::loadBuilding(std::string const &path)
 {
 	std::ifstream levelFile(path, std::ios_base::in);
 
-	Floor * currentFloor = new Floor(m_textureLoader);
-
 	bool mapConstruction = false;
 	bool backgroundConstruction = false;
-
 	unsigned int floorId = 0;
 	
 	while(levelFile.good())
-	{
+	{		
 		std::string line;
 		getline(levelFile, line);
 
 		if(line.length() > 0)
 		{
-			if (line[0] == '=')
+			if(line[0] == '=')
 			{
 				//new floor
-				m_floors.push_back(currentFloor);
-				currentFloor = new Floor(m_textureLoader);
-				floorId++;
+				m_floors.push_back(new Floor(m_textureLoader));
 			}
 
 			else if(line[0] == 'M')
@@ -84,20 +79,52 @@ void Building::loadBuilding(std::string const &path)
 
 				//the map of the floor is over
 				//inspection to determine the different rooms
-				for(unsigned int i = 0; i < currentFloor->getFloorMap().size(); ++i)
-					for(unsigned int j = 0; j < currentFloor->getFloorMap()[i].size(); ++j)
-						if((currentFloor->getFloorMap()[i][j] != '0') && (currentFloor->getFloorMap()[i][j] != 'P'))
+				std::cout << "size tab: [" << (m_floors.back())->getFloorMap()->size() << " - " << ((m_floors.back())->getFloorMap()[0]).size() << "]" << std::endl;
+				
+
+				std::vector<std::vector<unsigned char> > * floorMap = m_floors.back()->getFloorMap();
+				//Collision test
+				for (int i = 0; i<floorMap->size(); i++)
+				{
+					for (int j = 0; j<(*floorMap)[i].size(); j++)
+					{
+						if(((*floorMap)[i][j] != '0') && ((*floorMap)[i][j] != 'P'))
 						{
 							bool alreadyDefine = false;
-							for(auto it = currentFloor->getRooms()->cbegin(); it != currentFloor->getRooms()->cend(); ++it)
+							for (auto it = (m_floors.back())->getRooms()->cbegin(); it != (m_floors.back())->getRooms()->cend(); ++it)
 							{
-								if(currentFloor->getFloorMap()[i][j] == it->second->getRoomId())
+								if ((*floorMap)[i][j] == it->second->getRoomId())
 									alreadyDefine = true;
 							}
-						
-							if(!alreadyDefine)
-								currentFloor->addRoom(currentFloor->getFloorMap()[i][j]);
+
+							if (!alreadyDefine)
+								(m_floors.back())->addRoom((*floorMap)[i][j]);
 						}
+				 	}
+				}
+
+
+
+				//for(unsigned int i = 0; i < (m_floors.back())->getFloorMap()->size(); ++i)
+				//{
+				//	std::cout << "size line" << ((m_floors.back())->getFloorMap()[i]).size() << std::endl;
+
+				//	for(unsigned int j=0; j<((m_floors.back())->getFloorMap()[i]).size(); ++j)
+				//	{
+				//		if(((*m_floors.back()->getFloorMap())[i][j] != '0') && ((*m_floors.back()->getFloorMap())[i][j] != 'P'))
+				//		{
+				//			bool alreadyDefine = false;
+				//			for (auto it = (m_floors.back())->getRooms()->cbegin(); it != (m_floors.back())->getRooms()->cend(); ++it)
+				//			{
+				//				if ((*m_floors.back()->getFloorMap())[i][j] == it->second->getRoomId())
+				//					alreadyDefine = true;
+				//			}
+
+				//			if (!alreadyDefine)
+				//				(m_floors.back())->addRoom((*m_floors.back()->getFloorMap())[i][j]);
+				//		}
+				//	}
+				//}
 			}
 
 			else if(line[0] == '|')
@@ -111,7 +138,7 @@ void Building::loadBuilding(std::string const &path)
 				for (auto it = line.cbegin(); it != line.cend(); ++it)
 					buffer.push_back(*it);
 
-				currentFloor->addLineToRoomsMap(buffer);
+				(m_floors.back())->addLineToRoomsMap(buffer);
 			}
 
 			else if(backgroundConstruction)
@@ -120,7 +147,7 @@ void Building::loadBuilding(std::string const &path)
 				for (auto it = line.cbegin(); it != line.cend(); ++it)
 					buffer.push_back(*it);
 
-				currentFloor->addLineToBackground(buffer);
+				(m_floors.back())->addLineToBackground(buffer);
 			}
 
 			//Furniture
@@ -148,7 +175,7 @@ void Building::loadBuilding(std::string const &path)
 					int y = atoi(y_str.c_str());
 
 					BurnableObject * obj = BurnableObject::fromID(objectType, x, y, m_textureLoader->getObjectsTexture(), m_textureLoader->getFireTexture());
-					currentFloor->getRoom(roomId)->addFurniture(obj);
+					(m_floors.back())->getRoom(roomId)->addFurniture(obj);
 				}
 
 				else
@@ -178,7 +205,7 @@ void Building::loadBuilding(std::string const &path)
 					unsigned int y = atoi(y_str.c_str());
 
 					FireSensor * fs = new FireSensor(x, y, 64, m_textureLoader->getFireSensorTexture());
-					currentFloor->getRoom(roomId)->addFireSensor(fs);
+					(m_floors.back())->getRoom(roomId)->addFireSensor(fs);
 				}
 
 				else
@@ -186,33 +213,33 @@ void Building::loadBuilding(std::string const &path)
 			}
 
 			//Doors
-			else if (line[0] == 'd')
-			{
-				if (line.length() >= 4)
-				{
-					std::pair<unsigned char, unsigned char> adjacentRooms;
-					adjacentRooms.first = line[1];
-					adjacentRooms.second = line[2];
+			//else if (line[0] == 'd')
+			//{
+			//	if (line.length() >= 4)
+			//	{
+			//		std::pair<unsigned char, unsigned char> adjacentRooms;
+			//		adjacentRooms.first = line[1];
+			//		adjacentRooms.second = line[2];
 
-					std::string x_str;
-					std::string y_str;
-					bool posxDefinition = true;
+			//		std::string x_str;
+			//		std::string y_str;
+			//		bool posxDefinition = true;
 
-					for (unsigned int i = 3; i < line.length(); ++i)
-					{
-						if (line[i] == ':')
-							posxDefinition = false;
-						else
-							(posxDefinition ? x_str : y_str).push_back(line[i]);
-					}
+			//		for (unsigned int i = 3; i < line.length(); ++i)
+			//		{
+			//			if (line[i] == ':')
+			//				posxDefinition = false;
+			//			else
+			//				(posxDefinition ? x_str : y_str).push_back(line[i]);
+			//		}
 
-					unsigned int x = atoi(x_str.c_str());
-					unsigned int y = atoi(y_str.c_str());
+			//		unsigned int x = atoi(x_str.c_str());
+			//		unsigned int y = atoi(y_str.c_str());
 
-					Door * door = new Door(x, y, adjacentRooms, m_textureLoader->getObjectsTexture());
-					currentFloor->addDoor(door);
-				}
-			}
+			//		Door * door = new Door(x, y, adjacentRooms, m_textureLoader->getObjectsTexture());
+			//		(m_floors.back())->addDoor(door);
+			//	}
+			//}
 
 			//else if (line[0] == 't')
 			//{
@@ -242,15 +269,10 @@ void Building::loadBuilding(std::string const &path)
 			//	}
 			//}
 		}
-
-		floorId++;
 	}
 
-	m_currentFloor = m_floors[0];
-	////delete orphaned fireDetectors
-	//for (auto it = fireDetectors.begin(); it != fireDetectors.end(); ++it)
-	//	if (!fireDetectorsSentInRoom.at(it->first))
-	//		delete it->second;
+	if(!m_floors.empty())
+		m_currentFloor = m_floors[0];
 }
 
 void Building::draw(sf::RenderWindow *window)
@@ -262,10 +284,4 @@ void Building::draw(sf::RenderWindow *window)
 void Building::update(sf::Clock const & clk)
 {
 	m_currentFloor->update(clk);
-}
-
-bool Building::checkCollisions(Ray * collisionRay, unsigned char characterCurrentRoom)
-{
-    m_currentFloor->collision(collisionRay);
-    return collisionRay->validIntersectionFound();
 }
