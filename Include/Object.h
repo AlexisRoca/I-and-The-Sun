@@ -24,7 +24,6 @@ class Object : public INDrawable, public INUpdatable
 		Object(unsigned int width, unsigned int height, unsigned int x, unsigned int y, sf::Texture * objectTexture, unsigned int offsetX, unsigned int offsetY);
 		virtual ~Object();
 
-
 		int getWidth() const;
 		int getHeight() const;
 
